@@ -1,0 +1,38 @@
+definitions:
+  motifs:
+    my_motif:
+      seed: AAA
+  signals:
+    my_signal:
+      motifs:
+      - my_motif
+  simulations:
+    quickstart_simulation:
+      is_repertoire: true
+      paired: false
+      remove_seqs_with_signals: false
+      sequence_type: amino_acid
+      sim_items:
+        neg_reps:
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          number_of_examples: 50
+          receptors_in_repertoire_count: 10
+          signals: {}
+        pos_reps:
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          number_of_examples: 50
+          receptors_in_repertoire_count: 10
+          signals:
+            my_signal: 0.2
+      simulation_strategy: Implanting
+instructions:
+  simulation_instruction:
+    export_p_gens: false
+    max_iterations: 100
+    sequence_batch_size: 2000
+    simulation: quickstart_simulation
+    type: LigoSim

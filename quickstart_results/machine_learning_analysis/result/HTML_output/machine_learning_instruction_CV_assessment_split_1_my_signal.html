@@ -1,0 +1,1692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Training ML model - CV details</title>
+    <style>
+        /**
+*** SIMPLE GRID
+*** (C) ZACH COLE 2016
+**/
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+
+/* UNIVERSAL */
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+  font-family: 'Lato', Helvetica, sans-serif;
+  color: #333447;
+  line-height: 1.2;
+}
+
+/* TYPOGRAPHY */
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+p {
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.8;
+}
+
+a {
+    color: #25537b;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+}
+
+/* immuneML custom */
+
+table, td, th {
+    border: 1px solid #cccccc;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    padding: 0.4em;
+    text-align: center;
+}
+
+img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+details {
+    margin: 0.7em 0;
+}
+
+details > summary {
+    cursor: pointer;
+}
+
+details > summary > h3 {
+    display: inline-block;
+}
+
+details > summary:focus{
+    outline: none;
+}
+
+details > table {
+    margin: 1.5em;
+}
+
+embed {
+    width: 100%;
+    min-height: 650px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    text-align: center;
+}
+
+.grid-item-full-width {
+    grid-column: span 2;
+}
+
+ul > li {
+    text-align: left;
+}
+
+@media screen and (max-width: 960px) {
+  .grid-container{
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 10px;
+    text-align: center;
+  }
+}
+
+.padded {
+    padding: 1em 2em;
+}
+
+.padded-bottom{
+    padding-bottom: 1em;
+}
+
+.padded-left {
+    padding-left: 2em;
+}
+
+.padded-md {
+    padding: 0.75em 2em;
+}
+
+.padded-sm {
+    padding: 0.5em 2em;
+}
+
+.padded-xs {
+    padding: 0.25em 2em;
+}
+
+.padded-top {
+    padding-top: 1em;
+}
+
+.table-container{
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-container table thead {
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 600px) {
+  .col {
+    display: block;
+    width: 100%;
+  }
+}
+
+@media print {
+    .card {
+        box-shadow: none;
+    }
+}
+
+code {
+    max-width: 100%;
+    white-space: pre-wrap;
+}
+
+.nested-list-container {
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    max-width: 600px;
+}
+
+.nested-list-container ul {
+    list-style-type: none;  /* Remove default bullet points */
+    padding-left: 20px;      /* Indentation for nested lists */
+}
+
+.nested-list-container ul li {
+    margin: 8px 0;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+.nested-list-container ul li ul {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.nested-list-container ul li ul li {
+    border-left: 1px solid #68b5b3;  /* Accent for nested items */
+    margin: 4px 0;
+}
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <div class="container">
+        <h3>Assessment - split 1 details</h3>
+        <div class="padded-top padded-bottom">
+            <details>
+                <summary>Train and validation metadata (<a href="../machine_learning_instruction/split_1/datasets/train_metadata.csv">download link</a>)</summary>
+                <div class="table-container padded">
+                    <table>
+<thead>
+<tr>
+<td>my_signal</td>
+<td>sim_item</td>
+<td>type_dict_dynamic_fields</td>
+<td>filename</td>
+<td>identifier</td>
+</tr>
+</thead>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f29e131b668044469981163fbd0f97ae.tsv</td>
+<td>11eb5225b0c3493aa1b9229c07d9fadc</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>d3b4ff59ec7044f19f2b69854995f9e3.tsv</td>
+<td>798e5787a7d3484eb7597071adfc1cc6</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>5eedf6d352134e81b8c8a685caed305f.tsv</td>
+<td>5b8125db6e274295986feafa2271b8ba</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>866729ecf1464137874d18e34fbf9342.tsv</td>
+<td>912658c6414d439faf8384f03ce8bcca</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f7b2a1c0e7dc47a5bfa07508a558763f.tsv</td>
+<td>a3a7d0daaf964ff991a6f1ed6e863291</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>9db997a6d38f49d99f247ce66972848f.tsv</td>
+<td>f2040ce618b0433fa3d624cdcc3ea74d</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>9bd066040542401e9b67f8dc47356d7f.tsv</td>
+<td>f639cd6d6a90424ab10ae739c69ef58b</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>e3d0a249f37a4e229fd4f817c3d14eca.tsv</td>
+<td>bd9276a5ab7e445fb07c3491fa2d653b</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2899f72b6a8441c5bea8d2f9aa7faea9.tsv</td>
+<td>ed1664f3396349c2b7a3402e21212186</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>742cdac10101441088fc4887a5b224a7.tsv</td>
+<td>98d8a11eecba4d8c883a35f70a435221</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>46ca6f8ef81d49afb32ec399dde5466a.tsv</td>
+<td>02e577ed8baa4f3a8cfcfdfca2e1d54a</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>952feae0a6f140c1bbfbb865400e1f07.tsv</td>
+<td>29e7a9b76e994edfb83f2a69f5c5804b</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>1a363ff653ed49079b244ddf51d442cb.tsv</td>
+<td>05b092b1ca6e4fb38395acfcca27aae8</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>1cabe73425c6440fa7d16e1b1bc3840d.tsv</td>
+<td>ae50b3cce8c243cc889177c653137a73</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>745f4ed34f1145e9985724ca7dbeb6aa.tsv</td>
+<td>d76bdc2f597a46b8b715003680ba0bc7</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>02abdd77f31a4b26a29f164d7560614d.tsv</td>
+<td>946c6ab5738b49aaa7a712a7d0963e4b</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>ae765671190145539ee6257d87649a85.tsv</td>
+<td>bfa8da6a73a747a29ae455a38d9dfecf</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>ce7e01a7004a4a55ab15ff697265084c.tsv</td>
+<td>0c5ffaa6c3c048a58789aa15870656a9</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>9b1f63a7e6de42e89bc2c7b6974144c2.tsv</td>
+<td>0bf1bea0ca114511842839c97cf56987</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>263b1c7aae20440f9085233433c7b3e4.tsv</td>
+<td>fb9a8e863f1f47e0ae0b6d2ac2301b44</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>0c1b6f5ee6c1427a863f87f5bdc92345.tsv</td>
+<td>ae54f82f5af64542b87023c623519f9d</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>1ed499a89b564b669c56639fdbb18301.tsv</td>
+<td>34acb55442b647db8d9c79c61859554d</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>26dc710c4ab54b2098a8b13609e4c744.tsv</td>
+<td>22fc8eec27a949c19b3efab09279e680</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>9cd36598fd534111ba6696812744fd09.tsv</td>
+<td>315b402709af4e15a40ae64157f6dda9</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>04d6f63f6dc247efbcd44f870b39c0c8.tsv</td>
+<td>42a2a8e32b5344c484730c4c15153a3d</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>e384a8ff85e94e13a628673ccf86e60a.tsv</td>
+<td>ea2eeb440c4e414789f706f0b95b53ee</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>7920633cde93465baae29e64ecf2e163.tsv</td>
+<td>77a57228b470441bbeb77ffca17a9093</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>754975adf2264f2c861212bf5087e3ad.tsv</td>
+<td>0dbe472bd4de44f088f81f8306bdf3de</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>01179d9f20d14ed3b44971a9620dc62a.tsv</td>
+<td>c2f636013c3c4bb0b9f7ffa0e85737b6</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f39e621598034804980cfd6033ad2319.tsv</td>
+<td>cdfd39101fa742cbb45db17f38e1647c</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>80ad2a068dc448f38ff6527913338215.tsv</td>
+<td>8ab207ba43284524ba1f228158e02d9e</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>516c690bcddb4be294e05dd0bb0bf92f.tsv</td>
+<td>bee9f03791ce4ea89ebb230349883593</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>8462fc7ed6894603811621f85da220fa.tsv</td>
+<td>ea862b1600364f3db646eca5c872721d</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>b6572fe82297428d8d3c28f6b961a140.tsv</td>
+<td>ad59a524544245d2bb755b162fb58483</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>a01f0fb0e4f943528cb81378984b7143.tsv</td>
+<td>f561b9d0803e46d09b60a39359f41700</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2642bb0aa0e94ce3b7391effd717af40.tsv</td>
+<td>38be2f2220a249bea9e44a349055f01e</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>b518122550894b7fa4b7750ff667e52c.tsv</td>
+<td>cd606ab6b8454527aea94f7438e55b15</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>fe23e8913837443193d8511236bad446.tsv</td>
+<td>7ac0ce07284f481cbd0335a2f715bf6a</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>1f9434b53db34ea9b228431db4bcb0ea.tsv</td>
+<td>3488fb7489b04478b028b3b511d8a08f</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>ec801e2f463d43368401d105ccede6e7.tsv</td>
+<td>a0a402e2b1d64f8c82d965419a7dcc89</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2e6965554df2419599133fe4d9482cea.tsv</td>
+<td>c50c2a55ad9f4d32844e241dd39bd9a1</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>9790b67208684326ba0ee84f6be6936a.tsv</td>
+<td>cf8509ddb2014e43acbf0b156e5d9c4d</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>8090868710be4415b8cd0d123a735afa.tsv</td>
+<td>6b054294f4ba4387a9c302c3e08c24ff</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2508bcfd588447209a2c7c26b1b925c5.tsv</td>
+<td>a4156a89343e42a69a9c4078f101d03f</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>4a624d5f5ef848e2af022ad8a5352a64.tsv</td>
+<td>77095dbc976b41ba8ca040d37a4eee14</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>4d62bb67d78941af96adfd0c6db27129.tsv</td>
+<td>898ffa8804b24e06b307aaf608ec1e2d</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>8b1526a11193455194e195986e81d946.tsv</td>
+<td>93bd2cfb1b1b4e29a1a8f19372726910</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>0290dca5d6694541bc660af57dfeb02f.tsv</td>
+<td>f73c2bbeb45d4385bb600773c3560594</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>17e62400956341eb9f6b5599e9079dec.tsv</td>
+<td>4febe8e1d0b24213b4b06add8fd71c2d</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>1f09736e7a0e44ee8ff9166152182b40.tsv</td>
+<td>6f3ded41a4414672a8a65fc9e89209f2</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>506db9d2bf0141b185155fcb6e2057b4.tsv</td>
+<td>6920f5b009494d49a4a416cd5d9fda4f</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f8aa4987a4064c5baa4d884277d6a17e.tsv</td>
+<td>738ca1b9ff5f47a8a46f4ce75226bb65</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>b61680007e694ec8aa8304a34bfaa0eb.tsv</td>
+<td>5b2b66d890a2461a84b54a9c41756ec6</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>7787b1599ef54eef9dd95004d59e9750.tsv</td>
+<td>6176c94b26da4e568cc03d5654c7686c</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>eb14bf32a7704772b0b2da61de07fed8.tsv</td>
+<td>e80f08a7d7974ac49b92eb7667276b9c</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>ca9b94433c4845f0890a53ad4a4cdf52.tsv</td>
+<td>1dde4dde7e784b85af4910f0e829662d</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>43406d3f8b89476fb162eb3f8fbd99aa.tsv</td>
+<td>3c2303b7bc7f452d99740d67e5ae4b9f</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>70283d1f8b3b4ac999903f2019ff8839.tsv</td>
+<td>50b57accf9d1455d818e4aa61377be56</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f51d44cebd2247559bf692f7e5ad71a4.tsv</td>
+<td>72251fb257e8433d94ee27ebeb4529a2</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2fbf877b913c40fdb6206030167744a0.tsv</td>
+<td>e2a9428ddb8a405987fc87f16c0a5fed</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>c5ccfc682f5345d19591cf29bf7d73ab.tsv</td>
+<td>51f43e7944c3459b8b9132198baec727</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f4bf12c0d3cb4bd796786565f53e640f.tsv</td>
+<td>8bfb2779105246338c23e273458eae05</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>c03b5a56074844beb78f17001c145caf.tsv</td>
+<td>543d4239e2f943e4ac07aa5bdb13d2f3</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>7a185398e7ea4063889464b2f7bd4b10.tsv</td>
+<td>3949f967e9634ae59695614261d8b186</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>3e27390b72504909a48fe3a169a00cea.tsv</td>
+<td>a7a80a23ceb94202aa8fc693d3bda760</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>041dee28b06d4aa099e56c1d0c199791.tsv</td>
+<td>fb3968bfc12a43e7bcb92db37f671468</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>5f5d544d5e9d4a0594a9b101a9b7bae9.tsv</td>
+<td>1e889a4d2e2d4892a9da8f4abba1395e</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>fb8a4882d74e4dd18fdb1b8b33a53224.tsv</td>
+<td>188d76ad4f044109a00dbd776b3e3f2b</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>419c9cbef47640af8909a5c18c7a55ef.tsv</td>
+<td>35f598db2ec4492282ad4db54585128c</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>527351532d90434b9aee6a1b106250b9.tsv</td>
+<td>3c01ebf1cf444cc184fba9b6d0cfcee0</td>
+</tr>
+</table>
+
+                </div>
+            </details>
+            <details>
+                <summary>Test metadata (<a href="../machine_learning_instruction/split_1/datasets/test_metadata.csv">download link</a>)</summary>
+                <div class="table-container padded">
+                    <table>
+<thead>
+<tr>
+<td>my_signal</td>
+<td>sim_item</td>
+<td>type_dict_dynamic_fields</td>
+<td>filename</td>
+<td>identifier</td>
+</tr>
+</thead>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f471b83c2c6f41bfbc2900b75516f7fc.tsv</td>
+<td>093046daee9e422baa9a55b60ac9aabd</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>371ad6e421314beaaf571eea6ee216d1.tsv</td>
+<td>5d1b00348da842acb49ce551c18d7796</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>73c510bf60a84b3aa92ee13110358442.tsv</td>
+<td>f53ab5f7addf416fbcc3759805df7a30</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>bc97ab43aee5478183b773876a657be9.tsv</td>
+<td>0f302b30174a440eae04f1cc264c6cca</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>8c8408c3b87842d6a9ce70775cf94b9d.tsv</td>
+<td>6851aed56c6a43b5909712825e1fd5b3</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>2aa6f9ce188b483a93758d5cfc5b8c2e.tsv</td>
+<td>55fd881858be4ccd828913fe0a43de1f</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>6b378e1ffe984408b21d602c92410d96.tsv</td>
+<td>ac6bb8f4bcfd499c9f55cd79fbb5dea4</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>e85824a6fa054775899fa10398e8abe1.tsv</td>
+<td>cfc93c46f5f24ed2a1150fd51d7ce429</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>eabd590056634e8a92dfe3cf9c1fbaea.tsv</td>
+<td>06644fbc75054f07b74f592e5277f000</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>ad4f783fb56c4044b06639d9b550da50.tsv</td>
+<td>4f53fb49e8d54bb7a6518a85ee78ba42</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>3d3381f0af0843f28e4fea1386bb10b9.tsv</td>
+<td>84838acafd68461b8440ff75a2304373</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>6888044b42f8452b9234ee97ed9398d3.tsv</td>
+<td>3fc06d228be849d5b37c07b749881292</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>3eead4ffc81d4eabb8c030dcec76d687.tsv</td>
+<td>aefba181d097446b98ed923bcc2bce07</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>0de53d789f4d4bbc9f3078ca47df4aec.tsv</td>
+<td>f75e5b9056b546da9cce285a115ab6d4</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>6560a3f56b3c4125b226725ab9ba66af.tsv</td>
+<td>69bb8deb0c4e4cbdb37ab8db07f4d71a</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>28153057bc65479dbc2cf460785980ce.tsv</td>
+<td>2775fe24514b43bdbf08234da234bf65</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>bec22759cb07426dad0ec48092f0e2ab.tsv</td>
+<td>e315813ec53f47e1bcc250059303e77f</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>5a1cbb053c2d435685185ef651ce4667.tsv</td>
+<td>58ffafe178d640e190e17b26953bab4c</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>c071091620494667adfaa48d2e625df1.tsv</td>
+<td>a10b54ddf3a740b8b078277bc139ffe4</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>61a52cdc9094401ba2a99250df6c956a.tsv</td>
+<td>aee2f4ba1c8d44f89b5386ee655cfafc</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>afbee72bc9a540f1b6beff53d1272f2f.tsv</td>
+<td>1b87e4fb51df445ab4220815e57e15cf</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>4db11d5922ff46378334fed556e0bc7f.tsv</td>
+<td>da4325c9d1dc4c06809272601c08e038</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f0b8670bd79f4917b7f3e07925076f7d.tsv</td>
+<td>7ee915b27ec74cf3adade3842dd55936</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>fde0c293ec1149e4845965c54ecd9c2b.tsv</td>
+<td>2fd4d9fe0aab484a87455fe921ee313c</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>bfa7c4b600204bbc972e9f92cc3b3909.tsv</td>
+<td>e195c00b76c5424abf81fe043732ed40</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>6e744e6cfc8549d58898ed38e35aed7c.tsv</td>
+<td>78a560291a2e45a78d45b35f33d51524</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>231e6a28f7ca47609fc89bec15860aa0.tsv</td>
+<td>f69c9e872ef048baa4f7a3bdf094aa04</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f3a8e1a9b48e4664af176173f6ce64f3.tsv</td>
+<td>3a0e99bece174c4c95603c1807ab9f9f</td>
+</tr>
+<tr>
+<td>False</td>
+<td>neg_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>e253308919594ac0a28624f0f328e98c.tsv</td>
+<td>b84245c5f8a64ce2a07d8a545e6958bf</td>
+</tr>
+<tr>
+<td>True</td>
+<td>pos_reps</td>
+<td>"{'p_gen': 'float'</td>
+<td> 'from_default_model': 'int'</td>
+<td> 'my_signal': 'int'</td>
+<td> 'my_signal_positions': 'str'</td>
+<td> 'signals_aggregated': 'str'</td>
+<td> 'original_sequence': 'str'</td>
+<td> 'original_p_gen': 'float'}"</td>
+<td>f3e555a39e4c40618678bae5057bbf62.tsv</td>
+<td>257003427c0a48a0b91f0adf1f47c75d</td>
+</tr>
+</table>
+
+                </div>
+            </details>
+        </div>
+        <h4>Label my_signal</h4>
+        <p>
+            In the table below, the performance of the optimal hyperparameter setting on the test set for this split is shown, as measured by the
+            optimization metric used for model selection and model assessment. This hyperparameter setting was chosen to be the optimal one in the
+            inner cross-validation (i.e., during the selection) for this assessment split.
+        </p>
+        <div class="padded">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Optimal hyperparameter settings <br>(preprocessing, encoding, ML method)</th>
+                            <th>Performance (balanced_accuracy)</th>
+                            <th>Reports</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b>
+                                e2_simpleLR
+                                </b>
+                            </td>
+                            <td>
+                                <b>0.967</b></td>
+                            <td><a href="machine_learning_instruction_my_signal_e2_simpleLR_assessment_reports_split_1.html">see reports</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p>
+            In the table below, the performance of the other hyperparameter settings on the test set for this split are shown, as measured by the
+            optimization metric used for model selection and model assessment. These settings were not chosen as the optimal ones during the selection
+            for this assessment split.
+        </p>
+        <div class="padded">
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Hyperparameter settings <br>(preprocessing, encoding, ML method)</th>
+                            <th>Performance (balanced_accuracy)</th>
+                            <th>Reports</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                e1_simpleLR
+                            </td>
+                            <td>1.0</td>
+                            <td><a href="machine_learning_instruction_my_signal_e1_simpleLR_assessment_reports_split_1.html">see reports</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <p>The performance of different hyperparameter settings on all listed performance metrics
+            is shown in the table below. This is the performance on the test set for this assessment split when all
+            models have been retrained on training and validation dataset (the same as the previous table).</p>
+        <div class="table-container padded">
+            <table>
+<thead>
+<tr>
+<td>Hyperparameter settings (preprocessing, encoding, ML method)</td>
+<td>accuracy</td>
+</tr>
+</thead>
+<tr>
+<td>e1_simpleLR</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>e2_simpleLR</td>
+<td>0.967</td>
+</tr>
+</table>
+
+        </div>
+        <p class="padded-bottom">
+            For the performance of each of the settings during the inner loop of cross-validation (used to select the optimal model for the split),
+            see <a href="machine_learning_instruction_selection_details_my_signal_split_1.html">selection details</a>.
+        </p>
+        <h3>Data reports on training and test datasets</h3>
+        <p>Here the reports on the datasets before preprocessing and encoding are shown.</p>
+        <div class="padded">
+            <div class="grid-container">
+                <div class="">
+
+                    <h4>Report rep1 (training)</h4>
+                    <p>A histogram of the lengths of the sequences in a dataset.</p>
+                    <embed src="machine_learning_instruction_split_1_data_report_train_rep1_sequence_length_distribution.html">
+                    <p>Sequence length distribution plot (training data)</p>
+                    <ul>
+                    <li><a href="machine_learning_instruction_split_1_data_report_train_rep1_sequence_length_distribution.csv">Download lengths of sequences in the dataset report (training data)</a></li>
+                    </ul>
+                </div>
+                <div class="">
+                    <h4>Report rep1 (test)</h4>
+                    <p>A histogram of the lengths of the sequences in a dataset.</p>
+                    <embed src="machine_learning_instruction_split_1_data_report_test_rep1_sequence_length_distribution.html">
+                    <p>Sequence length distribution plot (test data)</p>
+                    <ul>
+                    <li><a href="machine_learning_instruction_split_1_data_report_test_rep1_sequence_length_distribution.csv">Download lengths of sequences in the dataset report (test data)</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

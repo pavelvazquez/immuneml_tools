@@ -1,0 +1,23 @@
+{
+    "summary": {
+        "num_errors": 1,
+        "num_failures": 0,
+        "num_skips": 0,
+        "num_tests": 1
+    },
+    "tests": [
+        {
+            "data": {
+                "execution_problem": "Input staging problem: Test input file (test-data/sample.yaml) cannot be found.",
+                "status": "error",
+                "test_index": 0,
+                "time_seconds": 0.02171611785888672,
+                "tool_id": "immune_ml",
+                "tool_version": "3.0.3.0"
+            },
+            "has_data": true,
+            "id": "immune_ml-0"
+        }
+    ],
+    "version": "0.1"
+}

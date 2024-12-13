@@ -1,0 +1,29 @@
+encoding_class: KmerFreqRepertoireEncoder
+encoding_file: encoder.pickle
+encoding_name: e2
+encoding_parameters:
+  k: 2
+  k_left: 1
+  k_right: 1
+  max_gap: 0
+  min_gap: 0
+  name: e2
+  normalization_type: l2
+  reads: unique
+  scale_to_unit_variance: true
+  scale_to_zero_mean: false
+  sequence_encoding: continuous_kmer
+  sequence_type: amino_acid
+label_name: my_signal
+label_positive_class: true
+label_values:
+- false
+- true
+ml_method: LogisticRegression
+ml_method_name: simpleLR
+preprocessing_file: preprocessing_sequence.pickle
+preprocessing_parameters: {}
+preprocessing_sequence_name: null
+software_used: immuneML 3.0.3; scikit-learn 1.6.0
+train_dataset_id: d12bac79-a7b0-4317-9e3b-ec1bf8f11bd3
+train_dataset_name: d12bac79-a7b0-4317-9e3b-ec1bf8f11bd3

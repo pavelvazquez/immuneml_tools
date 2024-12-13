@@ -1,0 +1,22 @@
+dataset_name: d1
+dataset_type: RepertoireDataset
+example_count: 100
+identifier: 430689150d1240f2ab4f093a8da876c8
+labels:
+  my_signal:
+  - false
+  - true
+  sim_item:
+  - pos_reps
+  - neg_reps
+metadata_file: metadata.csv
+name: 430689150d1240f2ab4f093a8da876c8
+timestamp: 2024-12-10 11:23:01.443785
+type_dict_dynamic_fields:
+  from_default_model: int
+  my_signal: int
+  my_signal_positions: str
+  original_p_gen: float
+  original_sequence: str
+  p_gen: float
+  signals_aggregated: str

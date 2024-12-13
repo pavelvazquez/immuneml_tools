@@ -1,0 +1,11 @@
+filename: 4d62bb67d78941af96adfd0c6db27129.tsv
+my_signal: true
+sim_item: pos_reps
+type_dict_dynamic_fields:
+  from_default_model: int
+  my_signal: int
+  my_signal_positions: str
+  original_p_gen: float
+  original_sequence: str
+  p_gen: float
+  signals_aggregated: str

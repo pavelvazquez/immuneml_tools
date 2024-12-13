@@ -1,0 +1,69 @@
+definitions:
+  datasets: {}
+  encodings: {}
+  example_weightings: {}
+  ml_methods: {}
+  motifs:
+    my_motif:
+      seed: AAA
+  preprocessing_sequences: {}
+  reports: {}
+  signals:
+    my_signal:
+      motifs:
+      - my_motif
+  simulations:
+    quickstart_simulation:
+      implanting_scaling_factor: 1
+      is_repertoire: true
+      keep_p_gen_dist: false
+      p_gen_bin_count: -1
+      paired: false
+      remove_seqs_with_signals: false
+      sequence_type: amino_acid
+      sim_items:
+        neg_reps:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 50
+          receptors_in_repertoire_count: 10
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals: {}
+        pos_reps:
+          default_clonal_frequency: null
+          false_negative_prob_in_receptors: 0
+          false_positive_prob_in_receptors: 0
+          generative_model:
+            default_model_name: humanTRB
+            type: OLGA
+          immune_events: {}
+          is_noise: false
+          number_of_examples: 50
+          receptors_in_repertoire_count: 10
+          seed: null
+          sequence_len_limits:
+            max: -1
+            min: -1
+          signals:
+            my_signal: 0.2
+      simulation_strategy: Implanting
+      species: human
+instructions:
+  simulation_instruction:
+    export_p_gens: false
+    max_iterations: 100
+    number_of_processes: 4
+    sequence_batch_size: 2000
+    simulation: quickstart_simulation
+    type: LigoSim
+output:
+  format: HTML

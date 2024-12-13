@@ -1,0 +1,105 @@
+definitions:
+  datasets:
+    d1:
+      format: AIRR
+      params:
+        dataset_file: quickstart_results/machine_learning_analysis/../synthetic_dataset/result/simulation_instruction/exported_dataset/airr/dataset.yaml
+        import_empty_aa_sequences: false
+        import_empty_nt_sequences: true
+        import_illegal_characters: true
+        import_out_of_frame: true
+        import_productive: false
+        import_unknown_productivity: true
+        import_with_stop_codon: false
+        is_repertoire: true
+        label_columns: null
+        metadata_file: quickstart_results/machine_learning_analysis/../synthetic_dataset/result/simulation_instruction/exported_dataset/airr/metadata.csv
+        paired: false
+        path: quickstart_results/machine_learning_analysis/../synthetic_dataset/result/simulation_instruction/exported_dataset/airr
+        region_type: IMGT_CDR3
+        result_path: quickstart_results/machine_learning_analysis/result/datasets/d1
+        separator: "\t"
+  encodings:
+    e1:
+      KmerFrequency:
+        k: 3
+    e2:
+      KmerFrequency:
+        k: 2
+  example_weightings: {}
+  ml_methods:
+    simpleLR:
+      LogisticRegression:
+        C: 0.1
+        max_iter: 200
+        penalty: l1
+      model_selection_cv: false
+      model_selection_n_folds: -1
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    coef:
+      Coefficients:
+        coefs_to_plot:
+        - n_largest
+        n_largest:
+        - 25
+        name: coef
+    hprep:
+      MLSettingsPerformance:
+        name: hprep
+        single_axis_labels: false
+        x_label_position: -0.12
+        y_label_position: -0.08
+    rep1:
+      SequenceLengthDistribution:
+        batch_size: 3
+        name: rep1
+        region_type: IMGT_CDR3
+        sequence_type: amino_acid
+  signals: {}
+  simulations: {}
+instructions:
+  machine_learning_instruction:
+    assessment:
+      reports:
+        data_splits:
+        - rep1
+        models:
+        - coef
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.7
+    dataset: d1
+    example_weighting: null
+    export_all_ml_settings: false
+    labels:
+    - my_signal
+    metrics:
+    - accuracy
+    number_of_processes: 3
+    optimization_metric: balanced_accuracy
+    refit_optimal_model: false
+    region_type: IMGT_CDR3
+    reports:
+    - hprep
+    selection:
+      reports:
+        data_splits:
+        - rep1
+        models: []
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.7
+    sequence_type: amino_acid
+    settings:
+    - encoding: e1
+      ml_method: simpleLR
+      preprocessing: null
+    - encoding: e2
+      ml_method: simpleLR
+      preprocessing: null
+    strategy: GridSearch
+    type: TrainMLModel
+output:
+  format: HTML
