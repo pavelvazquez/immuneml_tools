@@ -4,7 +4,6 @@
         <requirements>
             <requirement type="package" version="@VERSION@">immuneML</requirement>
             <requirement type="package" version="2.12.1">tensorflow</requirement>
-            <requirement type="package" version="18.12.1">nodejs</requirement>
         </requirements>
     </xml>
 </macros>
