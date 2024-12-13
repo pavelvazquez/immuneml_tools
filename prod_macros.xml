@@ -2,9 +2,9 @@
     <token name="@VERSION@">3.0.3</token>
     <xml name="requirements">
         <requirements>
-            <requirement type="package" version="3.0.3">immuneML</requirement>
+            <requirement type="package" version="@VERSION@">immuneML</requirement>
+            <requirement type="package" version="2.12.1">tensorflow</requirement>
             <requirement type="package" version="73.2">icu</requirement>
-            <requirement type="package" version="2.17.0">tensorflow</requirement>
             <requirement type="package" version="3.10.*">python</requirement>
         </requirements>
     </xml>
